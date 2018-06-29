@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="plm.mapper.SportsDevideGroupMapper">
+  <resultMap id="BaseResultMap" type="plm.beans.SportsDevideGroup">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="sports_id" jdbcType="INTEGER" property="sportsId" />
+    <result column="athletes_enroll_id" jdbcType="INTEGER" property="athletesEnrollId" />
+    <result column="sports_group_item_id" jdbcType="VARCHAR" property="sportsGroupItemId" />
+    <result column="track_number" jdbcType="INTEGER" property="trackNumber" />
+    <result column="item_group_number" jdbcType="INTEGER" property="itemGroupNumber" />
+    <result column="competition_number" jdbcType="INTEGER" property="competitionNumber" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, sports_id, athletes_enroll_id, sports_group_item_id, track_number, item_group_number, 
+    competition_number
+  </sql>
+  <select id="selectByExample" parameterType="plm.beans.SportsDevideGroupExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sports_devide_group
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sports_devide_group
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sports_devide_group
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="plm.beans.SportsDevideGroupExample">
+    delete from sports_devide_group
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="plm.beans.SportsDevideGroup">
+    insert into sports_devide_group (id, sports_id, athletes_enroll_id, 
+      sports_group_item_id, track_number, item_group_number, 
+      competition_number)
+    values (#{id,jdbcType=INTEGER}, #{sportsId,jdbcType=INTEGER}, #{athletesEnrollId,jdbcType=INTEGER}, 
+      #{sportsGroupItemId,jdbcType=VARCHAR}, #{trackNumber,jdbcType=INTEGER}, #{itemGroupNumber,jdbcType=INTEGER}, 
+      #{competitionNumber,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="plm.beans.SportsDevideGroup">
+    insert into sports_devide_group
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="sportsId != null">
+        sports_id,
+      </if>
+      <if test="athletesEnrollId != null">
+        athletes_enroll_id,
+      </if>
+      <if test="sportsGroupItemId != null">
+        sports_group_item_id,
+      </if>
+      <if test="trackNumber != null">
+        track_number,
+      </if>
+      <if test="itemGroupNumber != null">
+        item_group_number,
+      </if>
+      <if test="competitionNumber != null">
+        competition_number,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="sportsId != null">
+        #{sportsId,jdbcType=INTEGER},
+      </if>
+      <if test="athletesEnrollId != null">
+        #{athletesEnrollId,jdbcType=INTEGER},
+      </if>
+      <if test="sportsGroupItemId != null">
+        #{sportsGroupItemId,jdbcType=VARCHAR},
+      </if>
+      <if test="trackNumber != null">
+        #{trackNumber,jdbcType=INTEGER},
+      </if>
+      <if test="itemGroupNumber != null">
+        #{itemGroupNumber,jdbcType=INTEGER},
+      </if>
+      <if test="competitionNumber != null">
+        #{competitionNumber,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="plm.beans.SportsDevideGroupExample" resultType="java.lang.Long">
+    select count(*) from sports_devide_group
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update sports_devide_group
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.sportsId != null">
+        sports_id = #{record.sportsId,jdbcType=INTEGER},
+      </if>
+      <if test="record.athletesEnrollId != null">
+        athletes_enroll_id = #{record.athletesEnrollId,jdbcType=INTEGER},
+      </if>
+      <if test="record.sportsGroupItemId != null">
+        sports_group_item_id = #{record.sportsGroupItemId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.trackNumber != null">
+        track_number = #{record.trackNumber,jdbcType=INTEGER},
+      </if>
+      <if test="record.itemGroupNumber != null">
+        item_group_number = #{record.itemGroupNumber,jdbcType=INTEGER},
+      </if>
+      <if test="record.competitionNumber != null">
+        competition_number = #{record.competitionNumber,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update sports_devide_group
+    set id = #{record.id,jdbcType=INTEGER},
+      sports_id = #{record.sportsId,jdbcType=INTEGER},
+      athletes_enroll_id = #{record.athletesEnrollId,jdbcType=INTEGER},
+      sports_group_item_id = #{record.sportsGroupItemId,jdbcType=VARCHAR},
+      track_number = #{record.trackNumber,jdbcType=INTEGER},
+      item_group_number = #{record.itemGroupNumber,jdbcType=INTEGER},
+      competition_number = #{record.competitionNumber,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="plm.beans.SportsDevideGroup">
+    update sports_devide_group
+    <set>
+      <if test="sportsId != null">
+        sports_id = #{sportsId,jdbcType=INTEGER},
+      </if>
+      <if test="athletesEnrollId != null">
+        athletes_enroll_id = #{athletesEnrollId,jdbcType=INTEGER},
+      </if>
+      <if test="sportsGroupItemId != null">
+        sports_group_item_id = #{sportsGroupItemId,jdbcType=VARCHAR},
+      </if>
+      <if test="trackNumber != null">
+        track_number = #{trackNumber,jdbcType=INTEGER},
+      </if>
+      <if test="itemGroupNumber != null">
+        item_group_number = #{itemGroupNumber,jdbcType=INTEGER},
+      </if>
+      <if test="competitionNumber != null">
+        competition_number = #{competitionNumber,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="plm.beans.SportsDevideGroup">
+    update sports_devide_group
+    set sports_id = #{sportsId,jdbcType=INTEGER},
+      athletes_enroll_id = #{athletesEnrollId,jdbcType=INTEGER},
+      sports_group_item_id = #{sportsGroupItemId,jdbcType=VARCHAR},
+      track_number = #{trackNumber,jdbcType=INTEGER},
+      item_group_number = #{itemGroupNumber,jdbcType=INTEGER},
+      competition_number = #{competitionNumber,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

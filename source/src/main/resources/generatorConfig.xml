@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" 
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+
+	<!-- 必须配置驱动包的路径 -->
+    <classPathEntry location="C:\Users\sweet\.m2\repository\mysql\mysql-connector-java\5.1.18\mysql-connector-java-5.1.18.jar" />
+
+    <context id="Mysql" targetRuntime="MyBatis3">
+        <commentGenerator>
+            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+            <property name="suppressAllComments" value="true" />
+        </commentGenerator>
+
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost:3306/mydb" userId="root" password="123456"/>  
+
+        <!-- 指定生成pojo的包和此包在项目中的地址； -->
+        <javaModelGenerator targetPackage="plm.beans"
+            targetProject="src\main\java"/>
+
+        <!-- 指定生成pojo的映射xml文件的所在包和此包在项目中的地址 -->
+        <sqlMapGenerator targetPackage="plm.mapper"
+            targetProject="src\main\java"/>
+
+        <!-- 指定生成访问映射xml文件的接口所在包和此包在项目中的地址； -->
+        <javaClientGenerator type="XMLMAPPER"
+            targetPackage="plm.mapper"
+            targetProject="src\main\java">
+        </javaClientGenerator>
+
+        <!-- 配置表名跟pojo名  该table节点可以多个 -->
+ 		<table tableName="announcement" domainObjectName="Announcement"></table>
+ 		<table tableName="athletes_enroll" domainObjectName="AthletesEnroll"></table>
+ 		<table tableName="athletes_result" domainObjectName="AthletesResult"></table>
+ 		<table tableName="athletes_result_note" domainObjectName="AthletesResultNote"></table>
+ 		<table tableName="cloud_manager" domainObjectName="CloudManager"></table>
+ 		<table tableName="competition_unit" domainObjectName="CompetitionUnit"></table>
+ 		<table tableName="competition_unit_manager" domainObjectName="CompetitionUnit"></table>
+ 		<table tableName="item" domainObjectName="Item"></table>
+ 		<table tableName="judgement" domainObjectName="Judgement"></table>
+ 		<table tableName="organization_manager" domainObjectName="OrganizationManager"></table>
+ 		<table tableName="participants" domainObjectName="Participants"></table>
+ 		<table tableName="sports" domainObjectName="Sports"></table>
+ 		<table tableName="sports_competition_schedule" domainObjectName="SportsCompetitionSchedule"></table>
+ 		<table tableName="sports_devide_group" domainObjectName="SportsDevideGroup"></table>
+ 		<table tableName="sports_group" domainObjectName="SportsGroup"></table>
+ 		<table tableName="sports_group_item" domainObjectName="SportsGroupItem"></table>
+ 		<table tableName="sports_group_unit" domainObjectName="SportsGroupUnit"></table>
+ 		<table tableName="sports_has_competition_unit" domainObjectName="SportsHasCompetitionUnit"></table>
+ 		<table tableName="sports_has_item" domainObjectName="SportsHasItem"></table>
+ 		<table tableName="sports_has_judgement" domainObjectName="SportsHasJudgement"></table>
+ 		<table tableName="sports_has_sports_group" domainObjectName="SportsHasGroup"></table>
+ 		<table tableName="sports_has_volunteer_position" domainObjectName="SportsHasVolunteerPosition"></table>
+ 		<table tableName="sports_item_template" domainObjectName="SportsItemTemplate"></table>
+ 		<table tableName="sports_judgement_position_template" domainObjectName="SportsJudgementPositionTemplate"></table>
+ 		<table tableName="sports_manager" domainObjectName="SportsManager"></table>
+ 		<table tableName="sports_organzation_committee" domainObjectName="SportsOrganzationCommittee"></table>
+ 		<table tableName="sports_score" domainObjectName="SportsScore"></table>
+ 		<table tableName="sports_score_scheme" domainObjectName="SportsScoreScheme"></table>
+ 		<table tableName="sports_space" domainObjectName="SportsSpace"></table>
+ 		<table tableName="sports_unit" domainObjectName="SportsUnit"></table>
+ 		<table tableName="sports_has_sports_unit" domainObjectName="SportsHasSportsUnit"></table>
+ 		<table tableName="sports_volunteer_position_template" domainObjectName="SportsVolunteerPositionTemplate"></table>
+ 		<table tableName="volunteer_enroll" domainObjectName="VolunteerEnroll"></table>
+ 		<table tableName="volunteer_position" domainObjectName="VolunteerPosition"></table>
+ 		
+    </context>
+</generatorConfiguration>

@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="plm.mapper.ItemMapper">
+  <resultMap id="BaseResultMap" type="plm.beans.Item">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="sports_manager_id" jdbcType="INTEGER" property="sportsManagerId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="sex" jdbcType="VARCHAR" property="sex" />
+    <result column="property" jdbcType="VARCHAR" property="property" />
+    <result column="category" jdbcType="VARCHAR" property="category" />
+    <result column="spilt_track" jdbcType="BIT" property="spiltTrack" />
+    <result column="use_track_number" jdbcType="INTEGER" property="useTrackNumber" />
+    <result column="group_participants_number" jdbcType="INTEGER" property="groupParticipantsNumber" />
+    <result column="result_format" jdbcType="VARCHAR" property="resultFormat" />
+    <result column="sort" jdbcType="VARCHAR" property="sort" />
+    <result column="group_time" jdbcType="VARCHAR" property="groupTime" />
+    <result column="save" jdbcType="BIT" property="save" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, sports_manager_id, name, sex, property, category, spilt_track, use_track_number, 
+    group_participants_number, result_format, sort, group_time, save
+  </sql>
+  <select id="selectByExample" parameterType="plm.beans.ItemExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from item
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from item
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from item
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="plm.beans.ItemExample">
+    delete from item
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="plm.beans.Item">
+    insert into item (id, sports_manager_id, name, 
+      sex, property, category, 
+      spilt_track, use_track_number, group_participants_number, 
+      result_format, sort, group_time, 
+      save)
+    values (#{id,jdbcType=INTEGER}, #{sportsManagerId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
+      #{sex,jdbcType=VARCHAR}, #{property,jdbcType=VARCHAR}, #{category,jdbcType=VARCHAR}, 
+      #{spiltTrack,jdbcType=BIT}, #{useTrackNumber,jdbcType=INTEGER}, #{groupParticipantsNumber,jdbcType=INTEGER}, 
+      #{resultFormat,jdbcType=VARCHAR}, #{sort,jdbcType=VARCHAR}, #{groupTime,jdbcType=VARCHAR}, 
+      #{save,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="plm.beans.Item">
+    insert into item
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="sportsManagerId != null">
+        sports_manager_id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="property != null">
+        property,
+      </if>
+      <if test="category != null">
+        category,
+      </if>
+      <if test="spiltTrack != null">
+        spilt_track,
+      </if>
+      <if test="useTrackNumber != null">
+        use_track_number,
+      </if>
+      <if test="groupParticipantsNumber != null">
+        group_participants_number,
+      </if>
+      <if test="resultFormat != null">
+        result_format,
+      </if>
+      <if test="sort != null">
+        sort,
+      </if>
+      <if test="groupTime != null">
+        group_time,
+      </if>
+      <if test="save != null">
+        save,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="sportsManagerId != null">
+        #{sportsManagerId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="property != null">
+        #{property,jdbcType=VARCHAR},
+      </if>
+      <if test="category != null">
+        #{category,jdbcType=VARCHAR},
+      </if>
+      <if test="spiltTrack != null">
+        #{spiltTrack,jdbcType=BIT},
+      </if>
+      <if test="useTrackNumber != null">
+        #{useTrackNumber,jdbcType=INTEGER},
+      </if>
+      <if test="groupParticipantsNumber != null">
+        #{groupParticipantsNumber,jdbcType=INTEGER},
+      </if>
+      <if test="resultFormat != null">
+        #{resultFormat,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null">
+        #{sort,jdbcType=VARCHAR},
+      </if>
+      <if test="groupTime != null">
+        #{groupTime,jdbcType=VARCHAR},
+      </if>
+      <if test="save != null">
+        #{save,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="plm.beans.ItemExample" resultType="java.lang.Long">
+    select count(*) from item
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update item
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.sportsManagerId != null">
+        sports_manager_id = #{record.sportsManagerId,jdbcType=INTEGER},
+      </if>
+      <if test="record.name != null">
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sex != null">
+        sex = #{record.sex,jdbcType=VARCHAR},
+      </if>
+      <if test="record.property != null">
+        property = #{record.property,jdbcType=VARCHAR},
+      </if>
+      <if test="record.category != null">
+        category = #{record.category,jdbcType=VARCHAR},
+      </if>
+      <if test="record.spiltTrack != null">
+        spilt_track = #{record.spiltTrack,jdbcType=BIT},
+      </if>
+      <if test="record.useTrackNumber != null">
+        use_track_number = #{record.useTrackNumber,jdbcType=INTEGER},
+      </if>
+      <if test="record.groupParticipantsNumber != null">
+        group_participants_number = #{record.groupParticipantsNumber,jdbcType=INTEGER},
+      </if>
+      <if test="record.resultFormat != null">
+        result_format = #{record.resultFormat,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sort != null">
+        sort = #{record.sort,jdbcType=VARCHAR},
+      </if>
+      <if test="record.groupTime != null">
+        group_time = #{record.groupTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.save != null">
+        save = #{record.save,jdbcType=BIT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update item
+    set id = #{record.id,jdbcType=INTEGER},
+      sports_manager_id = #{record.sportsManagerId,jdbcType=INTEGER},
+      name = #{record.name,jdbcType=VARCHAR},
+      sex = #{record.sex,jdbcType=VARCHAR},
+      property = #{record.property,jdbcType=VARCHAR},
+      category = #{record.category,jdbcType=VARCHAR},
+      spilt_track = #{record.spiltTrack,jdbcType=BIT},
+      use_track_number = #{record.useTrackNumber,jdbcType=INTEGER},
+      group_participants_number = #{record.groupParticipantsNumber,jdbcType=INTEGER},
+      result_format = #{record.resultFormat,jdbcType=VARCHAR},
+      sort = #{record.sort,jdbcType=VARCHAR},
+      group_time = #{record.groupTime,jdbcType=VARCHAR},
+      save = #{record.save,jdbcType=BIT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="plm.beans.Item">
+    update item
+    <set>
+      <if test="sportsManagerId != null">
+        sports_manager_id = #{sportsManagerId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="property != null">
+        property = #{property,jdbcType=VARCHAR},
+      </if>
+      <if test="category != null">
+        category = #{category,jdbcType=VARCHAR},
+      </if>
+      <if test="spiltTrack != null">
+        spilt_track = #{spiltTrack,jdbcType=BIT},
+      </if>
+      <if test="useTrackNumber != null">
+        use_track_number = #{useTrackNumber,jdbcType=INTEGER},
+      </if>
+      <if test="groupParticipantsNumber != null">
+        group_participants_number = #{groupParticipantsNumber,jdbcType=INTEGER},
+      </if>
+      <if test="resultFormat != null">
+        result_format = #{resultFormat,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null">
+        sort = #{sort,jdbcType=VARCHAR},
+      </if>
+      <if test="groupTime != null">
+        group_time = #{groupTime,jdbcType=VARCHAR},
+      </if>
+      <if test="save != null">
+        save = #{save,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="plm.beans.Item">
+    update item
+    set sports_manager_id = #{sportsManagerId,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
+      property = #{property,jdbcType=VARCHAR},
+      category = #{category,jdbcType=VARCHAR},
+      spilt_track = #{spiltTrack,jdbcType=BIT},
+      use_track_number = #{useTrackNumber,jdbcType=INTEGER},
+      group_participants_number = #{groupParticipantsNumber,jdbcType=INTEGER},
+      result_format = #{resultFormat,jdbcType=VARCHAR},
+      sort = #{sort,jdbcType=VARCHAR},
+      group_time = #{groupTime,jdbcType=VARCHAR},
+      save = #{save,jdbcType=BIT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

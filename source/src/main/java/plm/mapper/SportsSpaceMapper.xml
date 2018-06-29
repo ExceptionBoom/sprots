@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="plm.mapper.SportsSpaceMapper">
+  <resultMap id="BaseResultMap" type="plm.beans.SportsSpace">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="sports_manager_id" jdbcType="INTEGER" property="sportsManagerId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="straight_track_number" jdbcType="INTEGER" property="straightTrackNumber" />
+    <result column="bend_track_number" jdbcType="INTEGER" property="bendTrackNumber" />
+    <result column="jumping_area_number" jdbcType="INTEGER" property="jumpingAreaNumber" />
+    <result column="high_jumping_area_number" jdbcType="INTEGER" property="highJumpingAreaNumber" />
+    <result column="short_throw_area_number" jdbcType="INTEGER" property="shortThrowAreaNumber" />
+    <result column="long_throw_area_number" jdbcType="INTEGER" property="longThrowAreaNumber" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, sports_manager_id, name, straight_track_number, bend_track_number, jumping_area_number, 
+    high_jumping_area_number, short_throw_area_number, long_throw_area_number
+  </sql>
+  <select id="selectByExample" parameterType="plm.beans.SportsSpaceExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sports_space
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sports_space
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sports_space
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="plm.beans.SportsSpaceExample">
+    delete from sports_space
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="plm.beans.SportsSpace">
+    insert into sports_space (id, sports_manager_id, name, 
+      straight_track_number, bend_track_number, jumping_area_number, 
+      high_jumping_area_number, short_throw_area_number, 
+      long_throw_area_number)
+    values (#{id,jdbcType=INTEGER}, #{sportsManagerId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
+      #{straightTrackNumber,jdbcType=INTEGER}, #{bendTrackNumber,jdbcType=INTEGER}, #{jumpingAreaNumber,jdbcType=INTEGER}, 
+      #{highJumpingAreaNumber,jdbcType=INTEGER}, #{shortThrowAreaNumber,jdbcType=INTEGER}, 
+      #{longThrowAreaNumber,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="plm.beans.SportsSpace">
+    insert into sports_space
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="sportsManagerId != null">
+        sports_manager_id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="straightTrackNumber != null">
+        straight_track_number,
+      </if>
+      <if test="bendTrackNumber != null">
+        bend_track_number,
+      </if>
+      <if test="jumpingAreaNumber != null">
+        jumping_area_number,
+      </if>
+      <if test="highJumpingAreaNumber != null">
+        high_jumping_area_number,
+      </if>
+      <if test="shortThrowAreaNumber != null">
+        short_throw_area_number,
+      </if>
+      <if test="longThrowAreaNumber != null">
+        long_throw_area_number,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="sportsManagerId != null">
+        #{sportsManagerId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="straightTrackNumber != null">
+        #{straightTrackNumber,jdbcType=INTEGER},
+      </if>
+      <if test="bendTrackNumber != null">
+        #{bendTrackNumber,jdbcType=INTEGER},
+      </if>
+      <if test="jumpingAreaNumber != null">
+        #{jumpingAreaNumber,jdbcType=INTEGER},
+      </if>
+      <if test="highJumpingAreaNumber != null">
+        #{highJumpingAreaNumber,jdbcType=INTEGER},
+      </if>
+      <if test="shortThrowAreaNumber != null">
+        #{shortThrowAreaNumber,jdbcType=INTEGER},
+      </if>
+      <if test="longThrowAreaNumber != null">
+        #{longThrowAreaNumber,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="plm.beans.SportsSpaceExample" resultType="java.lang.Long">
+    select count(*) from sports_space
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update sports_space
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.sportsManagerId != null">
+        sports_manager_id = #{record.sportsManagerId,jdbcType=INTEGER},
+      </if>
+      <if test="record.name != null">
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.straightTrackNumber != null">
+        straight_track_number = #{record.straightTrackNumber,jdbcType=INTEGER},
+      </if>
+      <if test="record.bendTrackNumber != null">
+        bend_track_number = #{record.bendTrackNumber,jdbcType=INTEGER},
+      </if>
+      <if test="record.jumpingAreaNumber != null">
+        jumping_area_number = #{record.jumpingAreaNumber,jdbcType=INTEGER},
+      </if>
+      <if test="record.highJumpingAreaNumber != null">
+        high_jumping_area_number = #{record.highJumpingAreaNumber,jdbcType=INTEGER},
+      </if>
+      <if test="record.shortThrowAreaNumber != null">
+        short_throw_area_number = #{record.shortThrowAreaNumber,jdbcType=INTEGER},
+      </if>
+      <if test="record.longThrowAreaNumber != null">
+        long_throw_area_number = #{record.longThrowAreaNumber,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update sports_space
+    set id = #{record.id,jdbcType=INTEGER},
+      sports_manager_id = #{record.sportsManagerId,jdbcType=INTEGER},
+      name = #{record.name,jdbcType=VARCHAR},
+      straight_track_number = #{record.straightTrackNumber,jdbcType=INTEGER},
+      bend_track_number = #{record.bendTrackNumber,jdbcType=INTEGER},
+      jumping_area_number = #{record.jumpingAreaNumber,jdbcType=INTEGER},
+      high_jumping_area_number = #{record.highJumpingAreaNumber,jdbcType=INTEGER},
+      short_throw_area_number = #{record.shortThrowAreaNumber,jdbcType=INTEGER},
+      long_throw_area_number = #{record.longThrowAreaNumber,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="plm.beans.SportsSpace">
+    update sports_space
+    <set>
+      <if test="sportsManagerId != null">
+        sports_manager_id = #{sportsManagerId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="straightTrackNumber != null">
+        straight_track_number = #{straightTrackNumber,jdbcType=INTEGER},
+      </if>
+      <if test="bendTrackNumber != null">
+        bend_track_number = #{bendTrackNumber,jdbcType=INTEGER},
+      </if>
+      <if test="jumpingAreaNumber != null">
+        jumping_area_number = #{jumpingAreaNumber,jdbcType=INTEGER},
+      </if>
+      <if test="highJumpingAreaNumber != null">
+        high_jumping_area_number = #{highJumpingAreaNumber,jdbcType=INTEGER},
+      </if>
+      <if test="shortThrowAreaNumber != null">
+        short_throw_area_number = #{shortThrowAreaNumber,jdbcType=INTEGER},
+      </if>
+      <if test="longThrowAreaNumber != null">
+        long_throw_area_number = #{longThrowAreaNumber,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="plm.beans.SportsSpace">
+    update sports_space
+    set sports_manager_id = #{sportsManagerId,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      straight_track_number = #{straightTrackNumber,jdbcType=INTEGER},
+      bend_track_number = #{bendTrackNumber,jdbcType=INTEGER},
+      jumping_area_number = #{jumpingAreaNumber,jdbcType=INTEGER},
+      high_jumping_area_number = #{highJumpingAreaNumber,jdbcType=INTEGER},
+      short_throw_area_number = #{shortThrowAreaNumber,jdbcType=INTEGER},
+      long_throw_area_number = #{longThrowAreaNumber,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

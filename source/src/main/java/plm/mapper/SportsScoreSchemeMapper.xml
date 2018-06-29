@@ -1,0 +1,452 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="plm.mapper.SportsScoreSchemeMapper">
+  <resultMap id="BaseResultMap" type="plm.beans.SportsScoreScheme">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="sports_id" jdbcType="INTEGER" property="sportsId" />
+    <result column="sports_group_item_id" jdbcType="VARCHAR" property="sportsGroupItemId" />
+    <result column="sports_award_grade1" jdbcType="INTEGER" property="sportsAwardGrade1" />
+    <result column="sports_award_grade2" jdbcType="VARCHAR" property="sportsAwardGrade2" />
+    <result column="sports_award_grade3" jdbcType="VARCHAR" property="sportsAwardGrade3" />
+    <result column="sports_award_grade4" jdbcType="VARCHAR" property="sportsAwardGrade4" />
+    <result column="sports_award_grade5" jdbcType="VARCHAR" property="sportsAwardGrade5" />
+    <result column="sports_award_grade6" jdbcType="VARCHAR" property="sportsAwardGrade6" />
+    <result column="sports_award_grade7" jdbcType="VARCHAR" property="sportsAwardGrade7" />
+    <result column="sports_award_grade8" jdbcType="VARCHAR" property="sportsAwardGrade8" />
+    <result column="sports_award_grade9" jdbcType="VARCHAR" property="sportsAwardGrade9" />
+    <result column="sports_award_grade10" jdbcType="VARCHAR" property="sportsAwardGrade10" />
+    <result column="sports_award_grade11" jdbcType="VARCHAR" property="sportsAwardGrade11" />
+    <result column="sports_award_grade12" jdbcType="VARCHAR" property="sportsAwardGrade12" />
+    <result column="sports_award_grade13" jdbcType="VARCHAR" property="sportsAwardGrade13" />
+    <result column="sports_award_grade14" jdbcType="VARCHAR" property="sportsAwardGrade14" />
+    <result column="sports_award_grade15" jdbcType="VARCHAR" property="sportsAwardGrade15" />
+    <result column="sports_award_grade16" jdbcType="VARCHAR" property="sportsAwardGrade16" />
+    <result column="break_score_grade" jdbcType="VARCHAR" property="breakScoreGrade" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, sports_id, sports_group_item_id, sports_award_grade1, sports_award_grade2, sports_award_grade3, 
+    sports_award_grade4, sports_award_grade5, sports_award_grade6, sports_award_grade7, 
+    sports_award_grade8, sports_award_grade9, sports_award_grade10, sports_award_grade11, 
+    sports_award_grade12, sports_award_grade13, sports_award_grade14, sports_award_grade15, 
+    sports_award_grade16, break_score_grade
+  </sql>
+  <select id="selectByExample" parameterType="plm.beans.SportsScoreSchemeExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sports_score_scheme
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sports_score_scheme
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sports_score_scheme
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="plm.beans.SportsScoreSchemeExample">
+    delete from sports_score_scheme
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="plm.beans.SportsScoreScheme">
+    insert into sports_score_scheme (id, sports_id, sports_group_item_id, 
+      sports_award_grade1, sports_award_grade2, sports_award_grade3, 
+      sports_award_grade4, sports_award_grade5, sports_award_grade6, 
+      sports_award_grade7, sports_award_grade8, sports_award_grade9, 
+      sports_award_grade10, sports_award_grade11, 
+      sports_award_grade12, sports_award_grade13, 
+      sports_award_grade14, sports_award_grade15, 
+      sports_award_grade16, break_score_grade)
+    values (#{id,jdbcType=INTEGER}, #{sportsId,jdbcType=INTEGER}, #{sportsGroupItemId,jdbcType=VARCHAR}, 
+      #{sportsAwardGrade1,jdbcType=INTEGER}, #{sportsAwardGrade2,jdbcType=VARCHAR}, #{sportsAwardGrade3,jdbcType=VARCHAR}, 
+      #{sportsAwardGrade4,jdbcType=VARCHAR}, #{sportsAwardGrade5,jdbcType=VARCHAR}, #{sportsAwardGrade6,jdbcType=VARCHAR}, 
+      #{sportsAwardGrade7,jdbcType=VARCHAR}, #{sportsAwardGrade8,jdbcType=VARCHAR}, #{sportsAwardGrade9,jdbcType=VARCHAR}, 
+      #{sportsAwardGrade10,jdbcType=VARCHAR}, #{sportsAwardGrade11,jdbcType=VARCHAR}, 
+      #{sportsAwardGrade12,jdbcType=VARCHAR}, #{sportsAwardGrade13,jdbcType=VARCHAR}, 
+      #{sportsAwardGrade14,jdbcType=VARCHAR}, #{sportsAwardGrade15,jdbcType=VARCHAR}, 
+      #{sportsAwardGrade16,jdbcType=VARCHAR}, #{breakScoreGrade,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="plm.beans.SportsScoreScheme">
+    insert into sports_score_scheme
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="sportsId != null">
+        sports_id,
+      </if>
+      <if test="sportsGroupItemId != null">
+        sports_group_item_id,
+      </if>
+      <if test="sportsAwardGrade1 != null">
+        sports_award_grade1,
+      </if>
+      <if test="sportsAwardGrade2 != null">
+        sports_award_grade2,
+      </if>
+      <if test="sportsAwardGrade3 != null">
+        sports_award_grade3,
+      </if>
+      <if test="sportsAwardGrade4 != null">
+        sports_award_grade4,
+      </if>
+      <if test="sportsAwardGrade5 != null">
+        sports_award_grade5,
+      </if>
+      <if test="sportsAwardGrade6 != null">
+        sports_award_grade6,
+      </if>
+      <if test="sportsAwardGrade7 != null">
+        sports_award_grade7,
+      </if>
+      <if test="sportsAwardGrade8 != null">
+        sports_award_grade8,
+      </if>
+      <if test="sportsAwardGrade9 != null">
+        sports_award_grade9,
+      </if>
+      <if test="sportsAwardGrade10 != null">
+        sports_award_grade10,
+      </if>
+      <if test="sportsAwardGrade11 != null">
+        sports_award_grade11,
+      </if>
+      <if test="sportsAwardGrade12 != null">
+        sports_award_grade12,
+      </if>
+      <if test="sportsAwardGrade13 != null">
+        sports_award_grade13,
+      </if>
+      <if test="sportsAwardGrade14 != null">
+        sports_award_grade14,
+      </if>
+      <if test="sportsAwardGrade15 != null">
+        sports_award_grade15,
+      </if>
+      <if test="sportsAwardGrade16 != null">
+        sports_award_grade16,
+      </if>
+      <if test="breakScoreGrade != null">
+        break_score_grade,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="sportsId != null">
+        #{sportsId,jdbcType=INTEGER},
+      </if>
+      <if test="sportsGroupItemId != null">
+        #{sportsGroupItemId,jdbcType=VARCHAR},
+      </if>
+      <if test="sportsAwardGrade1 != null">
+        #{sportsAwardGrade1,jdbcType=INTEGER},
+      </if>
+      <if test="sportsAwardGrade2 != null">
+        #{sportsAwardGrade2,jdbcType=VARCHAR},
+      </if>
+      <if test="sportsAwardGrade3 != null">
+        #{sportsAwardGrade3,jdbcType=VARCHAR},
+      </if>
+      <if test="sportsAwardGrade4 != null">
+        #{sportsAwardGrade4,jdbcType=VARCHAR},
+      </if>
+      <if test="sportsAwardGrade5 != null">
+        #{sportsAwardGrade5,jdbcType=VARCHAR},
+      </if>
+      <if test="sportsAwardGrade6 != null">
+        #{sportsAwardGrade6,jdbcType=VARCHAR},
+      </if>
+      <if test="sportsAwardGrade7 != null">
+        #{sportsAwardGrade7,jdbcType=VARCHAR},
+      </if>
+      <if test="sportsAwardGrade8 != null">
+        #{sportsAwardGrade8,jdbcType=VARCHAR},
+      </if>
+      <if test="sportsAwardGrade9 != null">
+        #{sportsAwardGrade9,jdbcType=VARCHAR},
+      </if>
+      <if test="sportsAwardGrade10 != null">
+        #{sportsAwardGrade10,jdbcType=VARCHAR},
+      </if>
+      <if test="sportsAwardGrade11 != null">
+        #{sportsAwardGrade11,jdbcType=VARCHAR},
+      </if>
+      <if test="sportsAwardGrade12 != null">
+        #{sportsAwardGrade12,jdbcType=VARCHAR},
+      </if>
+      <if test="sportsAwardGrade13 != null">
+        #{sportsAwardGrade13,jdbcType=VARCHAR},
+      </if>
+      <if test="sportsAwardGrade14 != null">
+        #{sportsAwardGrade14,jdbcType=VARCHAR},
+      </if>
+      <if test="sportsAwardGrade15 != null">
+        #{sportsAwardGrade15,jdbcType=VARCHAR},
+      </if>
+      <if test="sportsAwardGrade16 != null">
+        #{sportsAwardGrade16,jdbcType=VARCHAR},
+      </if>
+      <if test="breakScoreGrade != null">
+        #{breakScoreGrade,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="plm.beans.SportsScoreSchemeExample" resultType="java.lang.Long">
+    select count(*) from sports_score_scheme
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update sports_score_scheme
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.sportsId != null">
+        sports_id = #{record.sportsId,jdbcType=INTEGER},
+      </if>
+      <if test="record.sportsGroupItemId != null">
+        sports_group_item_id = #{record.sportsGroupItemId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sportsAwardGrade1 != null">
+        sports_award_grade1 = #{record.sportsAwardGrade1,jdbcType=INTEGER},
+      </if>
+      <if test="record.sportsAwardGrade2 != null">
+        sports_award_grade2 = #{record.sportsAwardGrade2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sportsAwardGrade3 != null">
+        sports_award_grade3 = #{record.sportsAwardGrade3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sportsAwardGrade4 != null">
+        sports_award_grade4 = #{record.sportsAwardGrade4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sportsAwardGrade5 != null">
+        sports_award_grade5 = #{record.sportsAwardGrade5,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sportsAwardGrade6 != null">
+        sports_award_grade6 = #{record.sportsAwardGrade6,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sportsAwardGrade7 != null">
+        sports_award_grade7 = #{record.sportsAwardGrade7,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sportsAwardGrade8 != null">
+        sports_award_grade8 = #{record.sportsAwardGrade8,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sportsAwardGrade9 != null">
+        sports_award_grade9 = #{record.sportsAwardGrade9,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sportsAwardGrade10 != null">
+        sports_award_grade10 = #{record.sportsAwardGrade10,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sportsAwardGrade11 != null">
+        sports_award_grade11 = #{record.sportsAwardGrade11,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sportsAwardGrade12 != null">
+        sports_award_grade12 = #{record.sportsAwardGrade12,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sportsAwardGrade13 != null">
+        sports_award_grade13 = #{record.sportsAwardGrade13,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sportsAwardGrade14 != null">
+        sports_award_grade14 = #{record.sportsAwardGrade14,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sportsAwardGrade15 != null">
+        sports_award_grade15 = #{record.sportsAwardGrade15,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sportsAwardGrade16 != null">
+        sports_award_grade16 = #{record.sportsAwardGrade16,jdbcType=VARCHAR},
+      </if>
+      <if test="record.breakScoreGrade != null">
+        break_score_grade = #{record.breakScoreGrade,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update sports_score_scheme
+    set id = #{record.id,jdbcType=INTEGER},
+      sports_id = #{record.sportsId,jdbcType=INTEGER},
+      sports_group_item_id = #{record.sportsGroupItemId,jdbcType=VARCHAR},
+      sports_award_grade1 = #{record.sportsAwardGrade1,jdbcType=INTEGER},
+      sports_award_grade2 = #{record.sportsAwardGrade2,jdbcType=VARCHAR},
+      sports_award_grade3 = #{record.sportsAwardGrade3,jdbcType=VARCHAR},
+      sports_award_grade4 = #{record.sportsAwardGrade4,jdbcType=VARCHAR},
+      sports_award_grade5 = #{record.sportsAwardGrade5,jdbcType=VARCHAR},
+      sports_award_grade6 = #{record.sportsAwardGrade6,jdbcType=VARCHAR},
+      sports_award_grade7 = #{record.sportsAwardGrade7,jdbcType=VARCHAR},
+      sports_award_grade8 = #{record.sportsAwardGrade8,jdbcType=VARCHAR},
+      sports_award_grade9 = #{record.sportsAwardGrade9,jdbcType=VARCHAR},
+      sports_award_grade10 = #{record.sportsAwardGrade10,jdbcType=VARCHAR},
+      sports_award_grade11 = #{record.sportsAwardGrade11,jdbcType=VARCHAR},
+      sports_award_grade12 = #{record.sportsAwardGrade12,jdbcType=VARCHAR},
+      sports_award_grade13 = #{record.sportsAwardGrade13,jdbcType=VARCHAR},
+      sports_award_grade14 = #{record.sportsAwardGrade14,jdbcType=VARCHAR},
+      sports_award_grade15 = #{record.sportsAwardGrade15,jdbcType=VARCHAR},
+      sports_award_grade16 = #{record.sportsAwardGrade16,jdbcType=VARCHAR},
+      break_score_grade = #{record.breakScoreGrade,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="plm.beans.SportsScoreScheme">
+    update sports_score_scheme
+    <set>
+      <if test="sportsId != null">
+        sports_id = #{sportsId,jdbcType=INTEGER},
+      </if>
+      <if test="sportsGroupItemId != null">
+        sports_group_item_id = #{sportsGroupItemId,jdbcType=VARCHAR},
+      </if>
+      <if test="sportsAwardGrade1 != null">
+        sports_award_grade1 = #{sportsAwardGrade1,jdbcType=INTEGER},
+      </if>
+      <if test="sportsAwardGrade2 != null">
+        sports_award_grade2 = #{sportsAwardGrade2,jdbcType=VARCHAR},
+      </if>
+      <if test="sportsAwardGrade3 != null">
+        sports_award_grade3 = #{sportsAwardGrade3,jdbcType=VARCHAR},
+      </if>
+      <if test="sportsAwardGrade4 != null">
+        sports_award_grade4 = #{sportsAwardGrade4,jdbcType=VARCHAR},
+      </if>
+      <if test="sportsAwardGrade5 != null">
+        sports_award_grade5 = #{sportsAwardGrade5,jdbcType=VARCHAR},
+      </if>
+      <if test="sportsAwardGrade6 != null">
+        sports_award_grade6 = #{sportsAwardGrade6,jdbcType=VARCHAR},
+      </if>
+      <if test="sportsAwardGrade7 != null">
+        sports_award_grade7 = #{sportsAwardGrade7,jdbcType=VARCHAR},
+      </if>
+      <if test="sportsAwardGrade8 != null">
+        sports_award_grade8 = #{sportsAwardGrade8,jdbcType=VARCHAR},
+      </if>
+      <if test="sportsAwardGrade9 != null">
+        sports_award_grade9 = #{sportsAwardGrade9,jdbcType=VARCHAR},
+      </if>
+      <if test="sportsAwardGrade10 != null">
+        sports_award_grade10 = #{sportsAwardGrade10,jdbcType=VARCHAR},
+      </if>
+      <if test="sportsAwardGrade11 != null">
+        sports_award_grade11 = #{sportsAwardGrade11,jdbcType=VARCHAR},
+      </if>
+      <if test="sportsAwardGrade12 != null">
+        sports_award_grade12 = #{sportsAwardGrade12,jdbcType=VARCHAR},
+      </if>
+      <if test="sportsAwardGrade13 != null">
+        sports_award_grade13 = #{sportsAwardGrade13,jdbcType=VARCHAR},
+      </if>
+      <if test="sportsAwardGrade14 != null">
+        sports_award_grade14 = #{sportsAwardGrade14,jdbcType=VARCHAR},
+      </if>
+      <if test="sportsAwardGrade15 != null">
+        sports_award_grade15 = #{sportsAwardGrade15,jdbcType=VARCHAR},
+      </if>
+      <if test="sportsAwardGrade16 != null">
+        sports_award_grade16 = #{sportsAwardGrade16,jdbcType=VARCHAR},
+      </if>
+      <if test="breakScoreGrade != null">
+        break_score_grade = #{breakScoreGrade,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="plm.beans.SportsScoreScheme">
+    update sports_score_scheme
+    set sports_id = #{sportsId,jdbcType=INTEGER},
+      sports_group_item_id = #{sportsGroupItemId,jdbcType=VARCHAR},
+      sports_award_grade1 = #{sportsAwardGrade1,jdbcType=INTEGER},
+      sports_award_grade2 = #{sportsAwardGrade2,jdbcType=VARCHAR},
+      sports_award_grade3 = #{sportsAwardGrade3,jdbcType=VARCHAR},
+      sports_award_grade4 = #{sportsAwardGrade4,jdbcType=VARCHAR},
+      sports_award_grade5 = #{sportsAwardGrade5,jdbcType=VARCHAR},
+      sports_award_grade6 = #{sportsAwardGrade6,jdbcType=VARCHAR},
+      sports_award_grade7 = #{sportsAwardGrade7,jdbcType=VARCHAR},
+      sports_award_grade8 = #{sportsAwardGrade8,jdbcType=VARCHAR},
+      sports_award_grade9 = #{sportsAwardGrade9,jdbcType=VARCHAR},
+      sports_award_grade10 = #{sportsAwardGrade10,jdbcType=VARCHAR},
+      sports_award_grade11 = #{sportsAwardGrade11,jdbcType=VARCHAR},
+      sports_award_grade12 = #{sportsAwardGrade12,jdbcType=VARCHAR},
+      sports_award_grade13 = #{sportsAwardGrade13,jdbcType=VARCHAR},
+      sports_award_grade14 = #{sportsAwardGrade14,jdbcType=VARCHAR},
+      sports_award_grade15 = #{sportsAwardGrade15,jdbcType=VARCHAR},
+      sports_award_grade16 = #{sportsAwardGrade16,jdbcType=VARCHAR},
+      break_score_grade = #{breakScoreGrade,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
